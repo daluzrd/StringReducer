@@ -5,10 +5,10 @@ namespace StringReducer
 {
     public static class StringReducer
     {
-        static bool IsInputValid(string input) =>
+        public static bool IsInputValid(string input) =>
             !(string.IsNullOrEmpty(input) || Regex.IsMatch(input, "[^a-c]"));
 
-        static char ReplaceEquals(char character1, char character2)
+        public static char ReplaceEquals(char character1, char character2)
         {
             if (character1 == 'a' && character2 == 'b')
                 return 'c';
