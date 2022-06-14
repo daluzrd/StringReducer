@@ -39,15 +39,13 @@ namespace StringReducer
 
                 return Reduce(input.Substring(0, 1) + rest);
             }
-            else
-            {
-                char replacedCharacter = ReplaceEquals(input[0], input[1]);
 
-                if (wasRepetition)
-                    return replacedCharacter + input.Substring(2);
+            char replacedCharacter = ReplaceEquals(input[0], input[1]);
 
-                return Reduce(replacedCharacter + input.Substring(2));
-            }
+            if (wasRepetition)
+                return replacedCharacter + input.Substring(2);
+
+            return Reduce(replacedCharacter + input.Substring(2));
         }
     }
 }
