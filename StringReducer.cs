@@ -24,7 +24,7 @@ namespace StringReducer
                 return 'a';
         }
 
-        public static string Reduce(string input)
+        public static string Reduce(string input, bool wasRepetition = false)
         {
             if (!IsInputValid(input))
                 throw new Exception("Text inputed is out of the norm");
@@ -32,12 +32,20 @@ namespace StringReducer
                 return input;
             else if (input.Substring(0, 1) == input.Substring(1, 1))
             {
-                string rest = Reduce(input.Substring(1));
+                string rest = Reduce(input.Substring(1), true);
+
+                if (wasRepetition)
+                    return input.Substring(0, 1) + rest;
+
                 return Reduce(input.Substring(0, 1) + rest);
             }
             else
             {
                 char replacedCharacter = ReplaceEquals(input[0], input[1]);
+
+                if (wasRepetition)
+                    return replacedCharacter + input.Substring(2);
+
                 return Reduce(replacedCharacter + input.Substring(2));
             }
         }
